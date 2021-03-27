@@ -4,11 +4,16 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\Mahasiswa as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+class Mahasiswa extends Model
 {
+    protected $table = "mahasiswa";
+    public $timestamps = false;
+    protected $primaryKey = 'nim';
+
     use HasFactory, Notifiable;
 
     /**
@@ -17,10 +22,11 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'username',
-        'name',
-        'email',
-        'password',
+        'nim',
+        'nama',
+        'kelas',
+        'jurusan',
+        'no_hp',
     ];
 
     /**
