@@ -9,6 +9,12 @@
         <div class="float-right my-2">
             <a class="btn btn-success" href="{{ route('mahasiswa.create') }}"> Input Mahasiswa</a>
         </div>
+        <form method="GET" action="{{url('search')}}">
+            <div class="float-left my-1">
+                <input type="text" name="nama" >
+                <button class="btn btn-primary" type="submit">Search</button>
+            </div>
+        </form>
     </div>
 </div>
 
@@ -29,6 +35,7 @@
          <th>No_Handphone</th>
          <th width="280px">Action</th>
     </tr>
+
     @foreach ($mahasiswas as $mahasiswa)
     <tr>
         <td>{{ $mahasiswa->nim }}</td>
