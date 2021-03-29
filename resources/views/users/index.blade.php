@@ -1,4 +1,5 @@
-@extends('mahasiswas.layout')
+@extends('users.layout')
+
 @section('content')
 <div class="row">
     <div class="col-lg-12 margin-tb">
@@ -6,7 +7,7 @@
             <h2>JURUSAN TEKNOLOGI INFORMASI-POLITEKNIK NEGERI MALANG</h2>
         </div>
         <div class="float-right my-2">
-            <a class="btn btn-success" href="{{ route('mahasiswas.create') }}"> Input Mahasiswa</a>
+            <a class="btn btn-success" href="{{ route('mahasiswa.create') }}"> Input Mahasiswa</a>
         </div>
     </div>
 </div>
@@ -21,22 +22,26 @@
      <tr>
          <th>Nim</th>
          <th>Nama</th>
+         <th>Email</th>
+         <th>Tanggal Lahir</th>
          <th>Kelas</th>
          <th>Jurusan</th>
          <th>No_Handphone</th>
          <th width="280px">Action</th>
     </tr>
-    @foreach ($mahasiswas as $Mahasiswa)
+    @foreach ($mahasiswas as $mahasiswa)
     <tr>
-        <td>{{ $Mahasiswa->Nim }}</td>
-        <td>{{ $Mahasiswa->Nama }}</td>
-        <td>{{ $Mahasiswa->Kelas }}</td>
-        <td>{{ $Mahasiswa->Jurusan }}</td>
-        <td>{{ $Mahasiswa->No_Handphone }}</td>
+        <td>{{ $mahasiswa->nim }}</td>
+        <td>{{ $mahasiswa->nama }}</td>
+        <td>{{ $mahasiswa->email}}</td>
+        <td>{{ $mahasiswa->tanggal_lahir}}</td>
+        <td>{{ $mahasiswa->kelas }}</td>
+        <td>{{ $mahasiswa->jurusan }}</td>
+        <td>{{ $mahasiswa->no_hp }}</td>
         <td>
-            <form action="{{ route('mahasiswas.destroy',$Mahasiswa->Nim) }}" method="POST">
-                <a class="btn btn-info" href="{{ route('mahasiswas.show',$Mahasiswa->Nim) }}">Show</a>
-                <a class="btn btn-primary" href="{{ route('mahasiswas.edit',$Mahasiswa->Nim) }}">Edit</a>
+            <form action="{{ route('mahasiswa.destroy',$mahasiswa->nim) }}" method="POST">
+                <a class="btn btn-info" href="{{ route('mahasiswa.show',$mahasiswa->nim) }}">Show</a>
+                <a class="btn btn-primary" href="{{ route('mahasiswa.edit',$mahasiswa->nim) }}">Edit</a>
                 @csrf
             @method('DELETE')
                 <button type="submit" class="btn btn-danger">Delete</button>
@@ -45,4 +50,9 @@
     </tr>
     @endforeach
     </table>
+
+
+    <div class="d-flex">
+        {{$mahasiswas->links()}}
+    </div>
 @endsection
