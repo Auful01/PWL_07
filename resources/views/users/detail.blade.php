@@ -1,4 +1,4 @@
-@extends('mahasiswas.layout')
+@extends('users.layout')
 
 @section('content')
 <div class="container mt-5">
@@ -8,23 +8,23 @@
                 <div class="card-body">
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
-                            <b>Nim: </b>{{$Mahasiswa->Nim}}
+                            <b>Nim: </b>{{$mahasiswa->nim}}
                         </li>
                         <li class="list-group-item">
-                            <b>Nama: </b>{{$Mahasiswa->Nama}}
+                            <b>Nama: </b>{{$mahasiswa->nama}}
                         </li>
                         <li class="list-group-item">
-                            <b>Kelas: </b>{{$Mahasiswa->Kelas}}
+                            <b>Kelas: </b>{{$mahasiswa->kelas}}
                         </li>
                         <li class="list-group-item">
-                            <b>Jurusan: </b>{{$Mahasiswa->Jurusan}}
+                            <b>Jurusan: </b>{{$mahasiswa->jurusan}}
                         </li>
                         <li class="list-group-item">
-                            <b>No_Handphone: </b>{{$Mahasiswa->No_Handphone}}
+                            <b>No_Handphone: </b>{{$mahasiswa->no_hp}}
                         </li>
                     </ul>
                 </div>
-                <a class="btn btn-success mt-3" href="{{ route('mahasiswas.index') }}">Kembali</a>
+                <a class="btn btn-success mt-3" href="{{ route('mahasiswa.index') }}">Kembali</a>
             </div>
         </div>
     </div>
