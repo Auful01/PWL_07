@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\Paginator;
 
 class MahasiswaController extends Controller
 {
@@ -14,10 +16,10 @@ class MahasiswaController extends Controller
      */
     public function index()
     {
-        $mahasiswas = Mahasiswa::all();
+        $mahasiswas = Mahasiswa::paginate(5);
         $posts = Mahasiswa::orderBy('nim', 'desc')->paginate(6);
-        return view('mahasiswas.index', compact('mahasiswas'))
-            -> with('i', (request()->input('page',1) - 1 ) * 5);
+        return view('users.index', compact('mahasiswas'))
+            ->with('i', (request()->input('page',1) - 1 ) * 5);
     }
 
     /**
@@ -27,7 +29,7 @@ class MahasiswaController extends Controller
      */
     public function create()
     {
-        return view('mahasiswas.create');
+        return view('users.create');
     }
 
     /**
@@ -41,6 +43,8 @@ class MahasiswaController extends Controller
         $request->validate([
             'nim' => 'required',
             'nama' => 'required',
+            'email' => 'required',
+            'tanggal_lahir' => 'required',
             'kelas' => 'required',
             'jurusan' => 'required',
             'no_hp' => 'required',
@@ -62,7 +66,7 @@ class MahasiswaController extends Controller
     public function show($nim)
     {
         $mahasiswa = Mahasiswa::find($nim);
-        return view('mahasiswas.detail', compact('mahasiswa'));
+        return view('users.detail', compact('mahasiswa'));
     }
 
     /**
@@ -74,7 +78,7 @@ class MahasiswaController extends Controller
     public function edit($nim)
     {
         $mahasiswa = Mahasiswa::find($nim);
-        return view('mahasiswas.detail',compact('mahasiswa'));
+        return view('users.edit',compact('mahasiswa'));
     }
 
     /**
